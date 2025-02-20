@@ -3,18 +3,19 @@ import morgan from 'morgan';
 import helmet from 'helmet';
 import cors from 'cors';
 import { config } from 'dotenv';
+import AuthRoutes from '../src/auth/auth.routes.js';
 
-const configs = (app)=>{
+const configs = (app) => {
     app.use(express.json());
-    app.use(express.urlencoded({extended: false}));
+    app.use(express.urlencoded({ extended: false }));
     app.use(cors());
     app.use(helmet());
     //app.use(limiter);
     app.use(morgan('dev'));
 }
 
-const routes = (app)=>{
-
+const routes = (app) => {
+    app.use(AuthRoutes);
 }
 
 export const initServer = async () => {
