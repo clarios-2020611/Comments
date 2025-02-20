@@ -17,7 +17,7 @@ export const needId = [
 export const registerValidator = [
     body('name', 'Name cannot be empty')
         .notEmpty(),
-    body('lastname', 'Surname cannot be empty')
+    body('lastname', 'Lastname cannot be empty')
         .notEmpty(),
     body('email', 'Email cannot be empty or is not a valid email')
         .notEmpty()

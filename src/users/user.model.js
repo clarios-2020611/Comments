@@ -20,7 +20,7 @@ const userSchema = Schema(
             type: String,
             required: [true, 'Username is required'],
             minLength: [1, 'Username cannot be empty'],
-            maxLength: [10, 'Username cannot be overcome 10 characteres']
+            maxLength: [15, 'Username cannot be overcome 10 characteres']
         },
         email: {
             type: String,
@@ -30,7 +30,7 @@ const userSchema = Schema(
         password: {
             type: String,
             required: [true, 'Password is required'],
-            match: [/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/, 'Password must be strong']
+            //match: [/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/, 'Password must be strong']
         },
         role: {
             type: String,

@@ -1,5 +1,8 @@
+import User from '../src/users/user.model.js';
+import Category from '../src/category/category.model.js';
+
 export const objectIdValid = async (objectId) => {
-    if (!isValidObjectId(objectId)) {
+    if (!await isValidObjectId(objectId)) {
         throw new Error(`Id is not objectId valid`);
     }
 }
