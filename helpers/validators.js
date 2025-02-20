@@ -17,7 +17,7 @@ export const needId = [
 export const registerValidator = [
     body('name', 'Name cannot be empty')
         .notEmpty(),
-    body('surname', 'Surname cannot be empty')
+    body('lastname', 'Surname cannot be empty')
         .notEmpty(),
     body('email', 'Email cannot be empty or is not a valid email')
         .notEmpty()
@@ -32,9 +32,6 @@ export const registerValidator = [
         .isStrongPassword()
         .withMessage('The password must be strong')
         .isLength({ min: 8 }),
-    body('phone', 'Phone cannot be empty or is not a valid phone')
-        .notEmpty()
-        .isMobilePhone(),
     validateErrorWithoutImg
 ];
 

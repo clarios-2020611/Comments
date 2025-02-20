@@ -1,3 +1,5 @@
+import { validationResult } from "express-validator";
+
 export const validateErrorWithoutImg = (req, res, next) => {
     const errors = validationResult(req)
 
