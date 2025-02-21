@@ -4,14 +4,14 @@ import { objectIdValid, existEmail, existUsername } from "./db.validators.js";
 
 
 export const createCategoryValidators = [
-    body('name', 'Name is required').notEmpty().matches(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/).withMessage('Field needs only letters').isLength({ max: 20 }),
-    body('description', 'Description is required').notEmpty().matches(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/).withMessage('Field needs only letters').isLength({ max: 200 }),
+    body('name', 'Name is required').notEmpty().isLength({ max: 20 }).withMessage('Name is too long'),
+    body('description', 'Description is required').notEmpty().isLength({ max: 200 }).withMessage('Description is too long'),
     validateErrorWithoutImg
 ];
 
 export const updatedCategory = [
-    body('name').optional('falsy').matches(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/).withMessage('Field needs only letters').isLength({ max: 20 }),
-    body('description').optional('falsy').matches(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/).withMessage('Field needs only letters').isLength({ max: 20 }),
+    body('name').optional('falsy').isLength({ max: 20 }).withMessage('Name is too long'),
+    body('description').optional('falsy').isLength({ max: 20 }).withMessage('Description is too long'),
     validateErrorWithoutImg
 ];
 
@@ -61,9 +61,16 @@ export const updatePasswordValidator = [
 ];
 
 export const updateValidator = [
-    body('name').optional('falsy').matches(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/).withMessage('Field needs only letters').isLength({ max: 20 }),
-    body('lastname').optional('falsy').matches(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/).withMessage('Field needs only letters').isLength({ max: 20 }),
+    body('name').optional('falsy').isLength({ max: 20 }).withMessage('Name too long'),
+    body('lastname').optional('falsy').isLength({ max: 20 }).withMessage('Description too long'),
     body('email').optional('falsy').isEmail().custom(existEmail),
     body('username').optional('falsy').custom(existEmail),
+    validateErrorWithoutImg
+];
+
+export const createPostValidator = [
+    body('body', 'Body is required').notEmpty().isLength({ max: 100000 }).withMessage('Please enter no more than 100,000 characters'),
+    body('category', 'Category is required').notEmpty().custom(objectIdValid),
+    body('user', 'User is required').notEmpty().custom(objectIdValid),
     validateErrorWithoutImg
 ];
