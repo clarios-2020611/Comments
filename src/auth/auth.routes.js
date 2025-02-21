@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { loginValidator, registerValidator } from "../../helpers/validators.js";
+import { loginValidator, registerValidator } from "../../middlewares/validators.js";
 import { login, register } from "./auth.controller.js";
 
 const api = Router();
