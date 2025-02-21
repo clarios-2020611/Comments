@@ -9,6 +9,12 @@ export const createCategoryValidators = [
     validateErrorWithoutImg
 ];
 
+export const updatedCategory = [
+    body('name').optional('falsy').matches(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/).withMessage('Field needs only letters').isLength({ max: 20 }),
+    body('description').optional('falsy').matches(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/).withMessage('Field needs only letters').isLength({ max: 20 }),
+    validateErrorWithoutImg
+];
+
 export const needId = [
     body('id', 'Id is required').notEmpty().custom(objectIdValid),
     validateErrorWithoutImg
@@ -44,5 +50,20 @@ export const loginValidator = [
         .isStrongPassword()
         .withMessage('The password must be strong')
         .isLength({ min: 8 }),
+    validateErrorWithoutImg
+];
+
+export const updatePasswordValidator = [
+    body('password', 'Password is required').notEmpty(),
+    body('passwordConfirm', 'Confirm password is required').notEmpty(),
+    body('id', 'Id is required').notEmpty(),
+    validateErrorWithoutImg
+];
+
+export const updateValidator = [
+    body('name').optional('falsy').matches(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/).withMessage('Field needs only letters').isLength({ max: 20 }),
+    body('lastname').optional('falsy').matches(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/).withMessage('Field needs only letters').isLength({ max: 20 }),
+    body('email').optional('falsy').isEmail().custom(existEmail),
+    body('username').optional('falsy').custom(existEmail),
     validateErrorWithoutImg
 ];

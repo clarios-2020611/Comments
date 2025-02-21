@@ -26,7 +26,13 @@ const commentsSchema = Schema(
         }],
         category: {
             type: Schema.Types.ObjectId,
+            ref: 'Category',
             required: [true, 'Category is required']
+        },
+        user: {
+            type: Schema.Types.ObjectId,
+            ref: 'User',
+            require: [true, 'User id is required']
         },
         status: {
             type: Boolean,

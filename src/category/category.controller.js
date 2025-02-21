@@ -29,7 +29,7 @@ export const getAll = async (req, res) => {
 export const getOne = async (req, res) => {
     try {
         const id = req.body.id;
-        const category = Category.findById(id);
+        const category = Category.findOne({ _id: id, status: true });
         availableCategory(id);
         if (!category) return res.status(404).send({ success: false, message: 'Category found' });
         return res.send({ success: true, message: `Category found ${category}` });
