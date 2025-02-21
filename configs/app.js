@@ -4,6 +4,9 @@ import helmet from 'helmet';
 import cors from 'cors';
 import { config } from 'dotenv';
 import AuthRoutes from '../src/auth/auth.routes.js';
+import CatRoutes from '../src/category/category.routes.js';
+import comRoutes from '../src/comments/comments.routes.js';
+import userRoutes from '../src/users/user.routes.js';
 
 const configs = (app) => {
     app.use(express.json());
@@ -16,6 +19,9 @@ const configs = (app) => {
 
 const routes = (app) => {
     app.use(AuthRoutes);
+    app.use( '/Category', CatRoutes);
+    app.use( '/Comments', comRoutes);
+    app.use( '/User' ,userRoutes);
 }
 
 export const initServer = async () => {
