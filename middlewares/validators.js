@@ -74,3 +74,10 @@ export const createPostValidator = [
     body('user', 'User is required').notEmpty().custom(objectIdValid),
     validateErrorWithoutImg
 ];
+
+export const updatePostValidator = [
+    body('body').optional('falsy').isLength({ max: 100000 }).withMessage('Please enter no more than 100,000 characters'),
+    body('category').optional().custom(objectIdValid),
+    body('user').notEmpty().custom(objectIdValid),
+    validateErrorWithoutImg
+];
